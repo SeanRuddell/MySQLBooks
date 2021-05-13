@@ -1,0 +1,56 @@
+#Create 5 different authors
+INSERT INTO books_schema.authors (name) VALUE ("Jane Austen");
+INSERT INTO books_schema.authors (name) VALUE ("Emily Dickinson");
+INSERT INTO books_schema.authors (name) VALUE ("Fyodor Dostoevsky");
+INSERT INTO books_schema.authors (name) VALUE ("William Shakespeare");
+INSERT INTO books_schema.authors (name) VALUE ("Lau Tzu");
+
+#Create 5 books with the following names
+INSERT INTO books_schema.books (title) VALUE ("C Sharp");
+INSERT INTO books_schema.books (title) VALUE ("Java");
+INSERT INTO books_schema.books (title) VALUE ("Python");
+INSERT INTO books_schema.books (title) VALUE ("PHP");
+INSERT INTO books_schema.books (title) VALUE ("Ruby");
+
+#Change the name of the C Sharp Book to C#
+UPDATE books_schema.books SET title = "C#" WHERE id = 1;
+
+#Change the first name of the 4th author to Bill
+UPDATE books_schema.authors SET name = "Bill" WHERE id = 4;
+
+#Have the first author favorite the first 2 books
+INSERT INTO books_schema.favorites (author_id, book_id) VALUE (1, 1);
+INSERT INTO books_schema.favorites (author_id, book_id) VALUE (1, 2);
+
+#Have the second author favorite the first 3 books
+INSERT INTO books_schema.favorites (author_id, book_id) VALUE (2, 1);
+INSERT INTO books_schema.favorites (author_id, book_id) VALUE (2, 2);
+INSERT INTO books_schema.favorites (author_id, book_id) VALUE (2, 3);
+
+#Have the third author favorite all the books
+INSERT INTO books_schema.favorites (author_id, book_id) VALUE (3, 1);
+INSERT INTO books_schema.favorites (author_id, book_id) VALUE (3, 2);
+INSERT INTO books_schema.favorites (author_id, book_id) VALUE (3, 3);
+INSERT INTO books_schema.favorites (author_id, book_id) VALUE (3, 11);
+
+#Have he fourth author favorite all the books
+INSERT INTO books_schema.favorites (author_id, book_id) VALUE (4, 1);
+INSERT INTO books_schema.favorites (author_id, book_id) VALUE (4, 2);
+INSERT INTO books_schema.favorites (author_id, book_id) VALUE (4, 3);
+INSERT INTO books_schema.favorites (author_id, book_id) VALUE (4, 11);
+INSERT INTO books_schema.favorites (author_id, book_id) VALUE (4, 12);
+
+#Retrieve all the authors who favorited the 3rd book
+SELECT * FROM books_schema.favorites WHERE book_id = 3;
+
+#Remove the first author of the 3rd book's favorites
+DELETE FROM books_schema.favorites WHERE author_id = 2 AND book_id = 3;
+
+#Add the 5th author as an other who favorited the 2nd book
+INSERT INTO books_schema.favorites (author_id, book_id) VALUE (5, 2);
+
+#Find all the books that the 3rd author favorited
+SELECT * FROM books_schema.favorites WHERE author_id = 3;
+
+#Find all the authors that favorited to the 5th book
+SELECT author_id FROM books_schema.favorites WHERE book_id = 12;
